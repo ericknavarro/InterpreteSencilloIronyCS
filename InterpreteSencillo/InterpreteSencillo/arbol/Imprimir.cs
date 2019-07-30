@@ -32,7 +32,8 @@ namespace InterpreteSencillo.arbol
         
     public Object ejecutar(TablaDeSimbolos ts)
         {
-            Console.WriteLine(contenido.ejecutar(ts).ToString());
+            String impresion = contenido.ejecutar(ts).ToString();
+            Console.WriteLine(impresion);
             return null;
         }
     }
