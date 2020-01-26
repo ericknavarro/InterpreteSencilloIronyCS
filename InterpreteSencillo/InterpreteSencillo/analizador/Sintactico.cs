@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using InterpreteSencillo.arbol;
 using Irony.Ast;
 using Irony.Parsing;
+using InterpreteSencillo.Graficas;
+using System.IO;
 
 namespace InterpreteSencillo.analizador
 {
@@ -27,6 +29,12 @@ namespace InterpreteSencillo.analizador
             foreach (Instruccion ins in AST) {
                 ins.ejecutar(global);
             }
+
+            //Para graficar el AST
+            ControlDot.ConstruirArbol(raiz); //Manda a llamar el metodo que genera el .dot
+            ControlDot.GraficarArbol("AST.dot", Directory.GetCurrentDirectory()); //Compila el .dot y genera la imagen en la ruta donde se ubica el proyecto
+            System.Diagnostics.Debug.WriteLine("AST generado en la ruta:"); //Indica en que ruta se encuentran el .dot y la imagen
+            System.Diagnostics.Debug.WriteLine(Directory.GetCurrentDirectory()); //Indica en que ruta se encuentran el .dot y la imagen
 
         }
 
