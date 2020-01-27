@@ -13,7 +13,7 @@ numero a;
 a=0;
 //Se declara la variable c, de tipo numero
 numero c;
-//Se asigna a la variable c el valor 0
+//Se asigna a la variable c el valor 1
 c=1;
 //Se imprime un separador
 imprimir("----------------");
@@ -53,12 +53,16 @@ c=13;
  **/
 If(a>10){
 	imprimir("a es mayor que 10.");
-	if(b>11){
-		imprimir("a es mayor que 10 y b es mayor que 11.");
-		if(c>12){
-			imprimir("a es mayor que 10, b es mayor que 11 y c es mayor que 12.");
-		}
-	}
 }else{
 	imprimir("a es menor o igual que 10.");
+}
+if(b>11){
+	imprimir("b es mayor que 11.");	
+}else{
+	imprimir("b es menor o igual que 11.");
+}
+if(c>12){
+	imprimir("c es mayor que 12.");
+}else{
+	imprimir("c es menor o igual que 12.");
 }
