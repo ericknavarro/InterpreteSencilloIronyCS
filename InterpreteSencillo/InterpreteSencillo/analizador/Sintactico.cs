@@ -20,12 +20,23 @@ namespace InterpreteSencillo.analizador
             ParseTree arbol = parser.Parse(cadena);
             ParseTreeNode raiz = arbol.Root;
 
-            LinkedList<Instruccion> AST = instrucciones(raiz.ChildNodes.ElementAt(0));
+            if(arbol.ParserMessages.Count > 0)
+            {
+                foreach (var error in arbol.ParserMessages)
+                {
+                    System.Diagnostics.Debug.WriteLine(string.Format("Error sintáctico:{0} En linea: {1}, columna: {2}", 
+                        error.Message, error.Location.Line, error.Location.Column));
+                }
+            }else{
 
-            TablaDeSimbolos global = new TablaDeSimbolos();
+                LinkedList<Instruccion> AST = instrucciones(raiz.ChildNodes.ElementAt(0));
 
-            foreach (Instruccion ins in AST) {
-                ins.ejecutar(global);
+                TablaDeSimbolos global = new TablaDeSimbolos();
+
+                foreach (Instruccion ins in AST) {
+                    ins.ejecutar(global);
+                }
+
             }
 
         }
