@@ -24,6 +24,7 @@ namespace InterpreteSencillo.analizador
             #endregion
 
             #region Terminales
+            var RIMPRIMIRLN = ToTerm("imprimirln");
             var RIMPRIMIR = ToTerm("imprimir");
             var RNUMERO = ToTerm("numero");
             var RMIENTRAS = ToTerm("mientras");
@@ -73,7 +74,8 @@ namespace InterpreteSencillo.analizador
                         | RNUMERO + IDENTIFICADOR + PTCOMA
                         | IDENTIFICADOR + IGUAL + expresion_numerica + PTCOMA
                         | RIF + PARIZQ + expresion_logica + PARDER + LLAVIZQ + instrucciones + LLAVDER
-                        | RIF + PARIZQ + expresion_logica + PARDER + LLAVIZQ + instrucciones + LLAVDER + RELSE + LLAVIZQ + instrucciones + LLAVDER;
+                        | RIF + PARIZQ + expresion_logica + PARDER + LLAVIZQ + instrucciones + LLAVDER + RELSE + LLAVIZQ + instrucciones + LLAVDER
+                        | RIMPRIMIRLN + PARIZQ + expresion_cadena + PARDER + PTCOMA;
 
             expresion_numerica.Rule = MENOS + expresion_numerica
                         | expresion_numerica + MAS + expresion_numerica
