@@ -5,7 +5,7 @@
  ******************************************/
 
 //Se imprime el encabezado
-imprimir("Tablas de" & " multiplicar");
+imprimirln("Tablas de" & " multiplicar");
 
 //Se declara la variable a, de tipo numero
 numero a;
@@ -16,7 +16,7 @@ numero c;
 //Se asigna a la variable c el valor 1
 c=1;
 //Se imprime un separador
-imprimir("----------------");
+imprimirln("----------------");
 /**
  * Se imprimen las tablas del 1 al 5 y 
  * para cada tabla, se imprimen los resultados
@@ -29,9 +29,9 @@ mientras(a<4+c){
 	b=0;
 	mientras(b<4+c){
 		b=b+1;
-		imprimir(a & " * " & b & " = " & a * b);
+		imprimirln(a & " * " & b & " = " & a * b);
 	}
-	imprimir("----------------");
+	imprimirln("----------------");
 }
 
 //Se asigna a la variable a el valor de 11
@@ -57,12 +57,12 @@ If(a>10){
 	imprimir("a es menor o igual que 10.");
 }
 if(b>11){
-	imprimir("b es mayor que 11.");	
+	imprimir(" | b es mayor que 11.");	
 }else{
-	imprimir("b es menor o igual que 11.");
+	imprimir(" | b es menor o igual que 11.");
 }
 if(c>12){
-	imprimir("c es mayor que 12.");
+	imprimir(" | c es mayor que 12.");
 }else{
-	imprimir("c es menor o igual que 12.");
+	imprimir(" | c es menor o igual que 12.");
 }
