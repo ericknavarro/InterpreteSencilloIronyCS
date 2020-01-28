@@ -33,7 +33,7 @@ namespace InterpreteSencillo.arbol
     public Object ejecutar(TablaDeSimbolos ts)
         {
             String impresion = contenido.ejecutar(ts).ToString();
-            System.Diagnostics.Debug.WriteLine(impresion);
+            System.Diagnostics.Debug.Write(impresion);
             return null;
         }
     }
