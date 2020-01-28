@@ -53,6 +53,8 @@ namespace InterpreteSencillo.analizador
             switch (tokenOperacion) {
                 case "imprimir":
                     return new Imprimir(expresion_cadena(actual.ChildNodes.ElementAt(2)));
+                case "imprimirln":
+                    return new ImprimirLn(expresion_cadena(actual.ChildNodes.ElementAt(2)));
                 case "mientras":
                     return new Mientras(expresion_logica(actual.ChildNodes.ElementAt(2)), instrucciones(actual.ChildNodes.ElementAt(5)));
                 case "numero":
