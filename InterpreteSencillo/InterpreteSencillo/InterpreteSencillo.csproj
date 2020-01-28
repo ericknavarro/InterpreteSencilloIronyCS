@@ -53,6 +53,7 @@
     <Compile Include="arbol\Declaracion.cs" />
     <Compile Include="arbol\If.cs" />
     <Compile Include="arbol\Imprimir.cs" />
+    <Compile Include="arbol\ImprimirLn.cs" />
     <Compile Include="arbol\Instruccion.cs" />
     <Compile Include="arbol\Mientras.cs" />
     <Compile Include="arbol\Operacion.cs" />
