@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace InterpreteSencillo.arbol
 {
@@ -13,6 +14,8 @@ namespace InterpreteSencillo.arbol
      * ser una instrucción que genere un valor al ser ejecutada.
      */
         private Instruccion contenido;
+        int contador = 0;
+        string cadena = "";
     /**
      * Constructor de la clase imprimir
      * @param contenido contenido que será impreso al ejecutar la instrucción
@@ -32,9 +35,18 @@ namespace InterpreteSencillo.arbol
         
     public Object ejecutar(TablaDeSimbolos ts)
         {
-            String impresion = contenido.ejecutar(ts).ToString();
-            System.Diagnostics.Debug.WriteLine(impresion);
-            return null;
+            String impresion = contenido.ejecutar(ts).ToString() +Environment.NewLine;
+            String errores = ts.getErroresTS();
+            if (ts.getErroresTS() != "")
+            {
+                return errores;
+            }
+            else {
+                return impresion;
+            }
+            //System.Diagnostics.Debug.WriteLine(impresion);
+            //return impresion;
         }
+
     }
 }

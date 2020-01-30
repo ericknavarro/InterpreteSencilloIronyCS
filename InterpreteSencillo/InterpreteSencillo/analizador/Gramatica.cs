@@ -14,6 +14,7 @@ namespace InterpreteSencillo.analizador
         {
 
             #region ER
+            
             StringLiteral CADENA = new StringLiteral("cadena", "\"");
             var ENTERO = new NumberLiteral("entero");
             var DECIMAL = new RegexBasedTerminal("Decimal", "[0-9]+'.'[0-9]+");

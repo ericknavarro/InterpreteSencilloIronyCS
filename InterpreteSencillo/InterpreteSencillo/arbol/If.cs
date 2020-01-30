@@ -12,6 +12,7 @@ namespace InterpreteSencillo.arbol
      * Condición de la instrucción si..entonces.
      */
         private Operacion condicion;
+        string textOperaciones = "";
     /**
      * Lista de instrucciones que serán ejecutadas si la condición se cumple.
      */

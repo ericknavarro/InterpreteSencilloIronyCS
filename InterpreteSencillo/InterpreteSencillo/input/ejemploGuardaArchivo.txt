@@ -1,0 +1,2 @@
+imprimir("Este es un ejemplo");
+imprimir("De guardar un archivo");

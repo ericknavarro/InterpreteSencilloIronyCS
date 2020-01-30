@@ -11,22 +11,37 @@ namespace InterpreteSencillo.analizador
 {
     class Sintactico
     {
+        string consola = "";
+        string salida = "";
+        string temp = "";
 
         public void analizar(String cadena)
         {
             Gramatica gramatica = new Gramatica();
             LanguageData lenguaje = new LanguageData(gramatica);
             Parser parser = new Parser(lenguaje);
+            consola += "[PROC]: Creando AST..." + Environment.NewLine;
             ParseTree arbol = parser.Parse(cadena);
+            consola += "[PROC]: Asignando la raiz al AST..." + Environment.NewLine;
             ParseTreeNode raiz = arbol.Root;
+            consola += "[PROC]: Raiz de AST asignada correctamente..." + Environment.NewLine;
 
-            LinkedList<Instruccion> AST = instrucciones(raiz.ChildNodes.ElementAt(0));
-
-            TablaDeSimbolos global = new TablaDeSimbolos();
-
-            foreach (Instruccion ins in AST) {
-                ins.ejecutar(global);
+            if (raiz == null)
+            {
+                salida = "[ERROR]: elementos incorrectos en el código";
             }
+            else {
+                LinkedList<Instruccion> AST = instrucciones(raiz.ChildNodes.ElementAt(0));
+                TablaDeSimbolos global = new TablaDeSimbolos();
+
+                foreach (Instruccion ins in AST)
+                {
+
+                    consola += "[AST]: Ejecutando instrucción: " + ins.ToString() + Environment.NewLine;
+                    salida += ins.ejecutar(global);
+                }
+            }
+             
 
         }
 
@@ -52,13 +67,17 @@ namespace InterpreteSencillo.analizador
             string tokenOperacion = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0].ToLower();
             switch (tokenOperacion) {
                 case "imprimir":
+                    consola += "[ANALISIS]: Instrucción IMPRIMIR reconocida..." + Environment.NewLine;
                     return new Imprimir(expresion_cadena(actual.ChildNodes.ElementAt(2)));
                 case "mientras":
+                    consola += "[ANALISIS]: Instrucción MIENTRAS reconocida..." + Environment.NewLine;
                     return new Mientras(expresion_logica(actual.ChildNodes.ElementAt(2)), instrucciones(actual.ChildNodes.ElementAt(5)));
                 case "numero":
+                    consola += "[ANALISIS]: Elemento NUMERO reconocido..." + Environment.NewLine;
                     string tokenValor = actual.ChildNodes.ElementAt(1).ToString().Split(' ')[0];
                     return new Declaracion(tokenValor, Simbolo.Tipo.NUMERO);
                 case "if":
+                    consola += "[ANALISIS]: Instrucción IF reconocida..." + Environment.NewLine;
                     if (actual.ChildNodes.Count == 7)
                     {
                         return new If(expresion_logica(actual.ChildNodes.ElementAt(2)), instrucciones(actual.ChildNodes.ElementAt(5)));
@@ -135,6 +154,15 @@ namespace InterpreteSencillo.analizador
                 }
                 return new Operacion(Double.Parse(actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0]));
             }
+        }
+
+        public string retornarSalida() {
+            return salida;
+        }
+
+        public string retornarProcesos()
+        {
+            return consola;
         }
     }
 }

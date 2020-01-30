@@ -1,0 +1,16 @@
+imprimir("Tablas de" & " multiplicar");
+numero a;
+a=0;
+numero c;
+c=1;
+imprimir("----------------");
+mientras(a<1+c){	
+	a=a+1;
+	numero b;
+	b=0;
+	mientras(b<1+c){
+		b=b+1;
+		imprimir(a & " * " & b & " = " & a * b);
+	}
+	imprimir("----------------");
+}

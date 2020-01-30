@@ -13,6 +13,7 @@ namespace InterpreteSencillo.arbol
      * Condición de la sentencia mientras.
      */
         private Operacion condicion;
+        
     /**
      * Lista de las instrucciones que deben ejecutarse si la condición se cumple.
      */
@@ -37,8 +38,11 @@ namespace InterpreteSencillo.arbol
 
     public Object ejecutar(TablaDeSimbolos ts)
         {
+            string textOperaciones = "";
+            string temp = "";
             while ((Boolean)condicion.ejecutar(ts))
             {
+                
                 TablaDeSimbolos tablaLocal = new TablaDeSimbolos();
                 foreach (Simbolo item in ts)
                 {
@@ -46,10 +50,20 @@ namespace InterpreteSencillo.arbol
                 }
                 foreach (Instruccion ins in listaInstrucciones)
                 {
-                    ins.ejecutar(tablaLocal);
+                    temp += ins.ejecutar(tablaLocal);// + Environment.NewLine;
+                    if (temp == "\r\n")
+                    {
+                        temp = "";
+                        textOperaciones = "";
+                    }
+                    else {
+                        textOperaciones = temp;
+                    }
+                    //ins.ejecutar(tablaLocal);
                 }
+
             }
-            return null;
+            return textOperaciones;
         }
     }
 }

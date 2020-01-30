@@ -8,10 +8,12 @@ namespace InterpreteSencillo.arbol
 {
     public class TablaDeSimbolos : LinkedList<Simbolo>
     {
-         /**
-         * Constructor de la clase que lo único que hace es llamar al constructor de 
-         * la clase padre, es decir, el constructor de LinkedList.
-         */
+        /**
+        * Constructor de la clase que lo único que hace es llamar al constructor de 
+        * la clase padre, es decir, el constructor de LinkedList.
+        */
+
+        string errores = "";
         public TablaDeSimbolos() : base()
         {
             // llamada del constructor de la clase padre
@@ -30,6 +32,7 @@ namespace InterpreteSencillo.arbol
                     return s.getValor();
                 }
             }
+            errores += "La variable " + id + " no existe en este ámbito." +Environment.NewLine;
             Console.WriteLine("La variable " + id + " no existe en este ámbito.");
             return "Desconocido";
         }
@@ -49,8 +52,15 @@ namespace InterpreteSencillo.arbol
                     return;
                 }
             }
+
+            errores+= "La variable " + id + " no existe en este ámbito, por lo "+ "que no puede asignársele un valor." + Environment.NewLine;
             Console.WriteLine("La variable " + id + " no existe en este ámbito, por lo "
                     + "que no puede asignársele un valor.");
+        }
+
+        public string getErroresTS()
+        {
+            return errores;
         }
     }
 }

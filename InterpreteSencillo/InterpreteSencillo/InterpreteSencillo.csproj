@@ -39,6 +39,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +60,12 @@
     <Compile Include="arbol\Operacion.cs" />
     <Compile Include="arbol\Simbolo.cs" />
     <Compile Include="arbol\TablaDeSimbolos.cs" />
+    <Compile Include="interfazGrafica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="interfazGrafica.Designer.cs">
+      <DependentUpon>interfazGrafica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +74,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Irony.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="interfazGrafica.resx">
+      <DependentUpon>interfazGrafica.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
