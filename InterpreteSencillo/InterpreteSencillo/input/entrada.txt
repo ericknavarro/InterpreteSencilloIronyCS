@@ -5,16 +5,16 @@
  ******************************************/
 
 //Se imprime el encabezado
-imprimir("Tablas de" & " multiplicar");
+immir("Tablas de" & " multiplicar");
 
 //Se declara la variable a, de tipo numero
 numero a;
 //Se asigna a la variable a el valor 0
-a=0;
+a=0
 //Se declara la variable c, de tipo numero
 numero c;
 //Se asigna a la variable c el valor 0
-c=1;
+1;
 //Se imprime un separador
 imprimir("----------------");
 /**
