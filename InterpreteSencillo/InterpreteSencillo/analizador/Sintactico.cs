@@ -108,12 +108,10 @@ namespace InterpreteSencillo.analizador
             else if (tokenOperador.Equals("||"))
             {
                 return new Operacion(expresion_logica(actual.ChildNodes.ElementAt(0)), expresion_logica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.OO);
-
             }
             else if (tokenOperador.Equals("&&"))
             {
                 return new Operacion(expresion_logica(actual.ChildNodes.ElementAt(0)), expresion_logica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.YY);
-
             }
             else {
                 return new Operacion(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.MAYOR_QUE);
