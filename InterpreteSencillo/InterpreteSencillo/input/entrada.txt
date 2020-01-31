@@ -24,11 +24,11 @@ imprimir("----------------");
  * dos ciclos while anidados. 
  **/
 mientras(a<4+c){	
-	a=a+1;
+	a++;
 	numero b;
 	b=0;
 	mientras(b<4+c){
-		b=b+1;
+		b++;
 		imprimir(a & " * " & b & " = " & a * b);
 	}
 	imprimir("----------------");
