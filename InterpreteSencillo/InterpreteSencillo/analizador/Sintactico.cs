@@ -53,7 +53,7 @@ namespace InterpreteSencillo.analizador
         public Instruccion instruccion(ParseTreeNode actual)
         {
             string tokenOperacion = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0].ToLower();
-            switch (tokenOperacion){
+            switch (tokenOperacion) {
                 case "imprimir":
                     return new Imprimir(expresion_cadena(actual.ChildNodes.ElementAt(2)));
                 case "mientras":
@@ -66,27 +66,27 @@ namespace InterpreteSencillo.analizador
                     {
                         return new If(expresion_logica(actual.ChildNodes.ElementAt(2)), instrucciones(actual.ChildNodes.ElementAt(5)));
                     }
-                    else{
+                    else {
                         return new If(expresion_logica(actual.ChildNodes.ElementAt(2)), instrucciones(actual.ChildNodes.ElementAt(5)), instrucciones(actual.ChildNodes.ElementAt(9)));
                     }
                 default:
                     tokenValor = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0];
-                    return new Asignacion(tokenValor, expresion_numerica(actual.ChildNodes.ElementAt(2)));
+                    return new Asignacion(tokenValor, expresion_numerica(actual.ChildNodes.ElementAt(2)));       
             }
         }
 
-        public Operacion expresion_cadena(ParseTreeNode actual){
+        public Operacion expresion_cadena(ParseTreeNode actual) {
             if (actual.ChildNodes.Count == 3)
             {
                 return new Operacion(expresion_cadena(actual.ChildNodes.ElementAt(0)), expresion_cadena(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.CONCATENACION);
             }
-            else{
+            else {
                 String tokenValor = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0];
                 if (tokenValor.Equals("expresion_numerica"))
                 {
                     return expresion_numerica(actual.ChildNodes.ElementAt(0));
                 }
-                else{
+                else {
                     tokenValor = actual.ChildNodes.ElementAt(0).ToString();
                     return new Operacion(tokenValor.Remove(tokenValor.ToCharArray().Length - 8, 8), Operacion.Tipo_operacion.CADENA);
                 }
@@ -100,7 +100,7 @@ namespace InterpreteSencillo.analizador
             {
                 return new Operacion(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.MENOR_QUE);
             }
-            else{
+            else {
                 return new Operacion(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.MAYOR_QUE);
             }
         }
@@ -133,7 +133,7 @@ namespace InterpreteSencillo.analizador
             {
                 string tokenOperador = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[1];
                 string tokenValor = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0];
-                if (tokenOperador.Equals("(ID)")){
+                if (tokenOperador.Equals("(ID)")) {
                     return new Operacion(tokenValor, Operacion.Tipo_operacion.IDENTIFICADOR);
                 }
                 return new Operacion(Double.Parse(actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0]));
