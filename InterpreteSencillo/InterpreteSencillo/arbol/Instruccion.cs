@@ -25,6 +25,5 @@ namespace InterpreteSencillo.arbol
          * resultado.
          */
         Object ejecutar(TablaDeSimbolos ts);
-        
     }
 }

@@ -12,7 +12,6 @@ namespace InterpreteSencillo
 {
     class Program
     {
-        //[System.STAThreadAttribute]
         [System.STAThread]
 
         static void Main(string[] args)
@@ -22,11 +21,6 @@ namespace InterpreteSencillo
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new interfazGrafica());
 
-            
-
-            //string text = System.IO.File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\input", "entrada.txt"));
-            //Sintactico sintac = new Sintactico();
-            //sintac.analizar(text);
         }
     }
 }

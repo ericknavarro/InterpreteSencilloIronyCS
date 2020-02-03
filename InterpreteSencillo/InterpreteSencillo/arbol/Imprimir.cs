@@ -44,8 +44,6 @@ namespace InterpreteSencillo.arbol
             else {
                 return impresion;
             }
-            //System.Diagnostics.Debug.WriteLine(impresion);
-            //return impresion;
         }
 
     }

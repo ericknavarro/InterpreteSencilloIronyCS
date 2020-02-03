@@ -14,12 +14,10 @@ namespace InterpreteSencillo.analizador
         {
 
             #region ER
-            
             StringLiteral CADENA = new StringLiteral("cadena", "\"");
             var ENTERO = new NumberLiteral("entero");
             var DECIMAL = new RegexBasedTerminal("Decimal", "[0-9]+'.'[0-9]+");
             IdentifierTerminal IDENTIFICADOR = new IdentifierTerminal("ID");
-
             CommentTerminal comentarioLinea = new CommentTerminal("comentarioLinea", "//", "\n", "\r\n"); //si viene una nueva linea se termina de reconocer el comentario.
             CommentTerminal comentarioBloque = new CommentTerminal("comentarioBloque", "/*", "*/");
             #endregion
