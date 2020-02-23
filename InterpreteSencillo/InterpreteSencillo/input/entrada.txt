@@ -13,7 +13,7 @@ numero a;
 a=0;
 //Se declara la variable c, de tipo numero
 numero c;
-//Se asigna a la variable c el valor 0
+//Se asigna a la variable c el valor 1
 c=1;
 //Se imprime un separador
 imprimir("----------------");
@@ -23,12 +23,12 @@ imprimir("----------------");
  * desde el uno hasta el 5, esto se hace con 
  * dos ciclos while anidados. 
  **/
-mientras(a<4+c){	
-	a=a+1;
+mientras(a<4+c && 1>0){	
+	a++;
 	numero b;
 	b=0;
-	mientras(b<4+c){
-		b=b+1;
+	mientras(b<4+c || 1<0){
+		b++;
 		imprimir(a & " * " & b & " = " & a * b);
 	}
 	imprimir("----------------");
@@ -62,3 +62,22 @@ If(a>10){
 }else{
 	imprimir("a es menor o igual que 10.");
 }
+
+imprimir("----------------");
+
+/**
+ * Se evalua si el valor de la variable a es 
+ * mayor que 10, si el b es mayor que 11 y si
+ * el de c es mayor que 12. 
+ **/
+If(a>10){
+	imprimir("a es mayor que 10.");
+}
+If(a>10 && b>11){
+	imprimir("a es mayor que 10 y b es mayor que 11.");
+}
+If(a>10 && b>11 && c>12){
+	imprimir("a es mayor que 10, b es mayor que 11 y c es mayor que 12.");
+}
+
+imprimir("----------------");

@@ -41,6 +41,10 @@ namespace InterpreteSencillo.analizador
             var MENQUE = ToTerm("<");
             var MAYQUE = ToTerm(">");
             var IGUAL = ToTerm("=");
+            var OO = ToTerm("||");
+            var YY = ToTerm("&&");
+            var AUMENTO = ToTerm("++");
+            var DECREMENTO = ToTerm("--");
 
             RegisterOperators(1, CONCAT);
             RegisterOperators(2, MAS, MENOS);
@@ -71,6 +75,8 @@ namespace InterpreteSencillo.analizador
                         | RMIENTRAS + PARIZQ + expresion_logica + PARDER + LLAVIZQ + instrucciones + LLAVDER
                         | RNUMERO + IDENTIFICADOR + PTCOMA
                         | IDENTIFICADOR + IGUAL + expresion_numerica + PTCOMA
+                        | IDENTIFICADOR + AUMENTO + PTCOMA
+                        | IDENTIFICADOR + DECREMENTO + PTCOMA
                         | RIF + PARIZQ + expresion_logica + PARDER + LLAVIZQ + instrucciones + LLAVDER
                         | RIF + PARIZQ + expresion_logica + PARDER + LLAVIZQ + instrucciones + LLAVDER + RELSE + LLAVIZQ + instrucciones + LLAVDER;
 
@@ -89,7 +95,9 @@ namespace InterpreteSencillo.analizador
                         | expresion_numerica;
 
             expresion_logica.Rule = expresion_numerica + MAYQUE + expresion_numerica
-                        | expresion_numerica + MENQUE + expresion_numerica;
+                        | expresion_numerica + MENQUE + expresion_numerica
+                        | expresion_logica + OO + expresion_logica
+                        | expresion_logica + YY + expresion_logica;
 
             #endregion
 

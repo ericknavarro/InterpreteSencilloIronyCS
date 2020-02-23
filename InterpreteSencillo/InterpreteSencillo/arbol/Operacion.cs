@@ -23,7 +23,11 @@ namespace InterpreteSencillo.arbol
             CADENA,
             MAYOR_QUE,
             MENOR_QUE,
-            CONCATENACION
+            CONCATENACION,
+            YY,
+            OO,
+            AUMENTO,
+            DECREMENTO
         }
         /**
          * Tipo de operación a ejecutar.
@@ -45,7 +49,7 @@ namespace InterpreteSencillo.arbol
         /**
          * Constructor de la clase para operaciones binarias (con dos operadores), estas
          * operaciones son:
-         * SUMA, RESTA, MULTIPLICACION, DIVISION, CONCATENACION, MAYOR_QUE, MENOR_QUE
+         * SUMA, RESTA, MULTIPLICACION, DIVISION, CONCATENACION, MAYOR_QUE, MENOR_QUE, OO(OR), YY(AND)
          * @param operadorIzq Operador izquierdo de la operación
          * @param operadorDer Opeardor derecho de la operación
          * @param tipo Tipo de la operación
@@ -58,7 +62,7 @@ namespace InterpreteSencillo.arbol
         }
         /**
          * Constructor para operaciones unarias (un operador), estas operaciones son:
-         * NEGATIVO
+         * NEGATIVO, AUMENTO, DECREMENTO
          * @param operadorIzq Único operador de la operación
          * @param tipo Tipo de operación
          */
@@ -144,6 +148,22 @@ namespace InterpreteSencillo.arbol
             else if (tipo == Tipo_operacion.CONCATENACION)
             {
                 return operadorIzq.ejecutar(ts).ToString() + operadorDer.ejecutar(ts).ToString();
+            }
+            else if (tipo == Tipo_operacion.OO)
+            {
+                return ((Boolean)operadorIzq.ejecutar(ts)) || ((Boolean)operadorDer.ejecutar(ts));
+            }
+            else if (tipo == Tipo_operacion.YY)
+            {
+                return ((Boolean)operadorIzq.ejecutar(ts)) && ((Boolean)operadorDer.ejecutar(ts));
+            }
+            else if (tipo == Tipo_operacion.AUMENTO)
+            {
+                return (Double)operadorIzq.ejecutar(ts) + 1;
+            }
+            else if (tipo == Tipo_operacion.DECREMENTO)
+            {
+                return (Double)operadorIzq.ejecutar(ts) - 1;
             }
             else
             {
