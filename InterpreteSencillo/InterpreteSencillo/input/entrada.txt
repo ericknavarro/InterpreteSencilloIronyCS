@@ -13,7 +13,7 @@ numero a;
 a=0;
 //Se declara la variable c, de tipo numero
 numero c;
-//Se asigna a la variable c el valor 0
+//Se asigna a la variable c el valor 1
 c=1;
 //Se imprime un separador
 imprimir("----------------");
