@@ -19,7 +19,7 @@ namespace InterpreteSencillo.analizador
             Parser parser = new Parser(lenguaje);
             ParseTree arbol = parser.Parse(cadena);
             ParseTreeNode raiz = arbol.Root;
-            manejoErrores Errores = new manejoErrores(arbol, raiz);
+            ManejoErrores Errores = new ManejoErrores(arbol, raiz);
             if (Errores.hayErrores()) {
                 return;
             }

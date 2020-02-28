@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace InterpreteSencillo.analizador
 {
-    class manejoErrores
+    class ManejoErrores
     {
         private ParseTree arbol;
         private ParseTreeNode raiz;
-        public manejoErrores(ParseTree arbol, ParseTreeNode raiz)
+        public ManejoErrores(ParseTree arbol, ParseTreeNode raiz)
         {
             this.arbol = arbol;
             this.raiz = raiz;
