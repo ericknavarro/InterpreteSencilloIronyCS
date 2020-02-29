@@ -25,10 +25,23 @@ namespace InterpreteSencillo.analizador
             }
             LinkedList<Instruccion> AST = instrucciones(raiz.ChildNodes.ElementAt(0));
 
-            TablaDeSimbolos global = new TablaDeSimbolos();
+            if(arbol.ParserMessages.Count > 0)
+            {
+                foreach (var error in arbol.ParserMessages)
+                {
+                    System.Diagnostics.Debug.WriteLine(string.Format("Error sintáctico:{0} En linea: {1}, columna: {2}", 
+                        error.Message, error.Location.Line, error.Location.Column));
+                }
+            }else{
 
-            foreach (Instruccion ins in AST) {
-                ins.ejecutar(global);
+                LinkedList<Instruccion> AST = instrucciones(raiz.ChildNodes.ElementAt(0));
+
+                TablaDeSimbolos global = new TablaDeSimbolos();
+
+                foreach (Instruccion ins in AST) {
+                    ins.ejecutar(global);
+                }
+
             }
 
         }
@@ -70,8 +83,16 @@ namespace InterpreteSencillo.analizador
                         return new If(expresion_logica(actual.ChildNodes.ElementAt(2)), instrucciones(actual.ChildNodes.ElementAt(5)), instrucciones(actual.ChildNodes.ElementAt(9)));
                     }
                 default:
-                    tokenValor = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0];
-                    return new Asignacion(tokenValor, expresion_numerica(actual.ChildNodes.ElementAt(2)));       
+                    if (actual.ChildNodes.Count == 3)
+                    {
+                        tokenValor = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0];
+                        return new Asignacion(tokenValor, expresion_numerica(actual));
+                    }
+                    else
+                    {
+                        tokenValor = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0];
+                        return new Asignacion(tokenValor, expresion_numerica(actual.ChildNodes.ElementAt(2)));
+                    }
             }
         }
 
@@ -100,6 +121,14 @@ namespace InterpreteSencillo.analizador
             {
                 return new Operacion(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.MENOR_QUE);
             }
+            else if (tokenOperador.Equals("||"))
+            {
+                return new Operacion(expresion_logica(actual.ChildNodes.ElementAt(0)), expresion_logica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.OO);
+            }
+            else if (tokenOperador.Equals("&&"))
+            {
+                return new Operacion(expresion_logica(actual.ChildNodes.ElementAt(0)), expresion_logica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.YY);
+            }
             else {
                 return new Operacion(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.MAYOR_QUE);
             }
@@ -120,6 +149,10 @@ namespace InterpreteSencillo.analizador
                         return new Operacion(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.MULTIPLICACION);
                     case "/":
                         return new Operacion(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)), Operacion.Tipo_operacion.DIVISION);
+                    case "++":
+                        return new Operacion(expresion_numerica(actual.ChildNodes.ElementAt(0)), Operacion.Tipo_operacion.AUMENTO);
+                    case "--":
+                        return new Operacion(expresion_numerica(actual.ChildNodes.ElementAt(0)), Operacion.Tipo_operacion.DECREMENTO);
                     default:
                         return expresion_numerica(actual.ChildNodes.ElementAt(1));
                 }
@@ -129,13 +162,23 @@ namespace InterpreteSencillo.analizador
             {
                 return new Operacion(expresion_numerica(actual.ChildNodes.ElementAt(1)), Operacion.Tipo_operacion.NEGATIVO);
             }
-            else
+            else 
             {
-                string tokenOperador = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[1];
-                string tokenValor = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0];
+                string tokenOperador;
+                string tokenValor;
+                if (actual.ChildNodes.Count == 0)
+                {
+                    tokenOperador = actual.ToString().Split(' ')[1];
+                    tokenValor = actual.ToString().Split(' ')[0];
+                }
+                else
+                {
+                    tokenOperador = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[1];
+                    tokenValor = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0];
+                }
                 if (tokenOperador.Equals("(ID)")) {
                     return new Operacion(tokenValor, Operacion.Tipo_operacion.IDENTIFICADOR);
-                }
+                }else
                 return new Operacion(Double.Parse(actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0]));
             }
         }
