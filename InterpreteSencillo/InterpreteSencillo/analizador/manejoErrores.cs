@@ -17,6 +17,8 @@ namespace InterpreteSencillo.analizador
             this.arbol = arbol;
             this.raiz = raiz;
         }
+
+
         public bool hayErrores()
         {
             String errores = "<html>\n <body> <h2>Errores proyecto 2</h2> <table style=\"width:100%\" border=\"1\"> <tr><th>Descripcion del error</th><th>fila</th> <th>columna</th></tr> \n";
