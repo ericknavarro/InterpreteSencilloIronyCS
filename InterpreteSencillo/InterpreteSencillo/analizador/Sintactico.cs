@@ -11,7 +11,6 @@ namespace InterpreteSencillo.analizador
 {
     class Sintactico
     {
-
         public void analizar(String cadena)
         {
             Gramatica gramatica = new Gramatica();
