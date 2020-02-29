@@ -1,18 +1,17 @@
 ﻿using Irony.Parsing;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace InterpreteSencillo.analizador
 {
-    class ManejoErrores
+    class Errores
     {
         private ParseTree arbol;
         private ParseTreeNode raiz;
-        public ManejoErrores(ParseTree arbol, ParseTreeNode raiz)
+        public Errores(ParseTree arbol, ParseTreeNode raiz)
         {
             this.arbol = arbol;
             this.raiz = raiz;

@@ -19,8 +19,8 @@ namespace InterpreteSencillo.analizador
             Parser parser = new Parser(lenguaje);
             ParseTree arbol = parser.Parse(cadena);
             ParseTreeNode raiz = arbol.Root;
-            ManejoErrores Errores = new ManejoErrores(arbol, raiz);
-            if (!Errores.hayErrores()) {
+            Errores errores = new Errores(arbol, raiz);
+            if (!errores.hayErrores()) {
              
 
                 LinkedList<Instruccion> AST = instrucciones(raiz.ChildNodes.ElementAt(0));
