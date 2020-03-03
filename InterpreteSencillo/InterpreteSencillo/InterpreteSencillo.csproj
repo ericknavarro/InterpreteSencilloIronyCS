@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="analizador\Gramatica.cs" />
+    <Compile Include="analizador\ManejoErrores.cs" />
     <Compile Include="analizador\Sintactico.cs" />
     <Compile Include="arbol\Asignacion.cs" />
     <Compile Include="arbol\Declaracion.cs" />

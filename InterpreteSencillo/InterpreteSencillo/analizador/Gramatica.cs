@@ -80,7 +80,8 @@ namespace InterpreteSencillo.analizador
                         | IDENTIFICADOR + DECREMENTO + PTCOMA
                         | RIF + PARIZQ + expresion_logica + PARDER + LLAVIZQ + instrucciones + LLAVDER
                         | RIF + PARIZQ + expresion_logica + PARDER + LLAVIZQ + instrucciones + LLAVDER + RELSE + LLAVIZQ + instrucciones + LLAVDER;
-
+            instruccion.ErrorRule = SyntaxError + PTCOMA
+                                | SyntaxError + LLAVDER;
             expresion_numerica.Rule = MENOS + expresion_numerica
                         | expresion_numerica + MAS + expresion_numerica
                         | expresion_numerica + MENOS + expresion_numerica

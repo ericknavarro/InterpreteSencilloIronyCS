@@ -11,7 +11,6 @@ namespace InterpreteSencillo.analizador
 {
     class Sintactico
     {
-
         public void analizar(String cadena)
         {
             Gramatica gramatica = new Gramatica();
@@ -19,15 +18,9 @@ namespace InterpreteSencillo.analizador
             Parser parser = new Parser(lenguaje);
             ParseTree arbol = parser.Parse(cadena);
             ParseTreeNode raiz = arbol.Root;
-
-            if(arbol.ParserMessages.Count > 0)
-            {
-                foreach (var error in arbol.ParserMessages)
-                {
-                    System.Diagnostics.Debug.WriteLine(string.Format("Error sintáctico:{0} En linea: {1}, columna: {2}", 
-                        error.Message, error.Location.Line, error.Location.Column));
-                }
-            }else{
+            Errores errores = new Errores(arbol, raiz);
+            if (!errores.hayErrores()) {
+             
 
                 LinkedList<Instruccion> AST = instrucciones(raiz.ChildNodes.ElementAt(0));
 
